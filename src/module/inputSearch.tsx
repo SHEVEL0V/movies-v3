@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
+import ThemSwitches from "@/components/switch/them";
 import { PATH } from "@/router/path";
-import { movies } from "@/services/fetch";
 
 export default function InputSearch() {
   const [value, setValue] = useState("");
@@ -31,6 +31,9 @@ export default function InputSearch() {
         <IconButton type="button" onClick={handlerRoute}>
           <SearchIcon className="fill-textBlack dark:fill-textWhite" />
         </IconButton>
+      </div>
+      <div className="ml-auto">
+        <ThemSwitches />
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SortIcon from "@mui/icons-material/Sort";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
-import ThemSwitches from "@/components/switch/them";
 import { PATH } from "@/router/path";
 
 export default function Sidebar() {
@@ -43,10 +42,6 @@ export default function Sidebar() {
       >
         <RecentActorsIcon />
       </MenuBtn>
-      <div className="ml-auto">
-        <ThemSwitches />
-      </div>
-
       <div
         className="flex items-center justify-center w-14 h-14  ml-auto mr-auto mt-auto rounded-full bg-white "
         onClick={() => router.push(PATH.ACCOUNT.LOGIN)}

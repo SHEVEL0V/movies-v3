@@ -3,13 +3,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getBaseUrlImg } from "@/services/getBaseUrlImg";
+import { getBaseUrlImg } from "@/services/geUrlImg";
 
 import type { Movie } from "@/types";
 
 type Props = { movie: Movie };
 
-export default function CardFilm({ movie }: Props) {
+export default function CardMovie({ movie }: Props) {
   const { id, backdrop_path, title, vote_average } = movie;
 
   const img = getBaseUrlImg(backdrop_path);
@@ -18,7 +18,7 @@ export default function CardFilm({ movie }: Props) {
 
   return (
     <Link
-      href={"/" + path + "?" + "id=" + id}
+      href={"/" + path + "-" + id}
       className="relative overflow-hidden  rounded-lg shadow "
     >
       <Image src={img} width={500} height={500} alt={title} />

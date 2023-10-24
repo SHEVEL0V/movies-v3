@@ -3,20 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --bg-color: #f1f5f9;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #64748b;
-  }
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  background-color: var(--bg-color);
-}
