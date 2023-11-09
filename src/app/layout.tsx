@@ -1,7 +1,7 @@
 /** @format */
-import Sidebar from "@/module/sidebar";
-import Container from "@/components/container";
-import InputSearch from "@/module/inputSearch";
+import Sidebar from "@/components/sidebar";
+import Container from "@/components/container/container";
+import InputSearch from "@/components/header/inputSearch";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   icons: "https://example.com/icon.png",
 };
 
-export default function RootLayout(props: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  auth: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -31,7 +31,7 @@ export default function RootLayout(props: {
             {props.children}
           </main>
         </Container>
-        {props.auth}
+        {props.modal}
       </body>
     </html>
   );

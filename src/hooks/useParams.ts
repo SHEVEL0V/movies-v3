@@ -26,6 +26,8 @@ export const useParams = () => {
     [searchParams]
   );
 
+  const get = (name: string) => searchParams.get(name);
+
   const add = (name: string, value: string) =>
     router.push(
       pathname + "?" + createQueryString(name.toLocaleLowerCase(), value)
@@ -34,5 +36,5 @@ export const useParams = () => {
   const remove = (name: string) =>
     router.push(pathname + "?" + removeQueryParams(name.toLocaleLowerCase()));
 
-  return { add, remove };
+  return { add, remove, get };
 };

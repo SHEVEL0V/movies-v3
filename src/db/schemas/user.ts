@@ -1,15 +1,11 @@
 /** @format */
+"use server";
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
     name: String,
-    telephone: {
-      type: String,
-      required: [true, "Set telephone for user"],
-      RegExp: /[+0-9]/,
-      minLength: 6,
-    },
     password: {
       type: String,
       required: [true, "Set password for user"],
@@ -25,13 +21,10 @@ const userSchema = new mongoose.Schema(
       minLength: 3,
       maxLength: 30,
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    },
+
     avatarURL: {
-      type: [String],
+      type: String,
+      default: "",
     },
     verify: {
       type: Boolean,
@@ -41,4 +34,4 @@ const userSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true }
 );
 
-export default mongoose.model("users", userSchema);
+export const User = mongoose.model("user", userSchema);

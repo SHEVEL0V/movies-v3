@@ -6,14 +6,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SortIcon from "@mui/icons-material/Sort";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
-import { PATH } from "@/router/path";
+import { PATH } from "@/router";
 
-export default function Sidebar() {
+export default function Navigate() {
   const router = useRouter();
   const pathname = usePathname();
-
   return (
-    <aside className="flex flex-col  rounded p-2 gap-3 bg-bgWhiteSecond dark:bg-bgDarkThird">
+    <nav className=" flex flex-col gap-3">
       <MenuBtn
         title="Home"
         path={pathname}
@@ -42,12 +41,6 @@ export default function Sidebar() {
       >
         <RecentActorsIcon />
       </MenuBtn>
-      <div
-        className="flex items-center justify-center w-14 h-14  ml-auto mr-auto mt-auto rounded-full bg-white "
-        onClick={() => router.push(PATH.ACCOUNT.LOGIN)}
-      >
-        user
-      </div>
-    </aside>
+    </nav>
   );
 }

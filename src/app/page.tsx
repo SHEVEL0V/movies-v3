@@ -1,17 +1,13 @@
 /** @format */
 import ListMovies from "@/components/listMovies";
-
-import { connectDB } from "@/db/connect";
 import { movies } from "@/services/fetch";
 
-export default async function Home() {
-  const data = await movies.getTrendWeek();
+type P = {
+  searchParams: { page: string };
+};
 
-  // const handleSearch = (v: string) => console.log(v);
-
-  // connectDB()
-  //   .then(() => console.log("✅ mongoDB connection successful"))
-  //   .catch((error) => console.log(error));
+export default async function Home({ searchParams }: P) {
+  const data = await movies.getTrendWeek(searchParams.page);
 
   return <ListMovies data={data.results} />;
 }

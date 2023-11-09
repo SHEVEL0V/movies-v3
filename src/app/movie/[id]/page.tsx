@@ -2,14 +2,16 @@
 
 import { movies } from "@/services/fetch";
 import Image from "next/image";
-import { getBaseUrlImg } from "@/services/geUrlImg";
+import { getBaseUrlImg } from "@/helpers/geUrlImg";
 import MovieRating from "@/components/UI/rating";
-import OptionsBtn from "@/components/button/optionsBtn";
+import Link from "next/link";
+import { PATH } from "@/router";
 
-type Props = { params: { id: string }; searchParams: any };
+type Props = { params: { id: string } };
 
-export default async function MovieLayout({ params }: Props) {
-  const data = await movies.getById(params.id);
+export default async function MovieLayout(props: Props) {
+  const id = props.params.id;
+  const data = await movies.getById(id);
 
   return (
     <div>
@@ -55,6 +57,11 @@ export default async function MovieLayout({ params }: Props) {
           </div>
         </div>
         <div className="col-span-3">{data.overview}</div>
+      </div>
+      <div className="border rounded mt-4 p-2 hover:bg-bgDarkThird/50">
+        <Link href={PATH.MOVIE.ACTORS(id)} className="">
+          Actors opened in
+        </Link>
       </div>
     </div>
   );

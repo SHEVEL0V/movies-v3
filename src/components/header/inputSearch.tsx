@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import ThemSwitches from "@/components/switch/them";
-import { PATH } from "@/router/path";
+import { PATH } from "@/router";
 
 export default function InputSearch() {
   const [value, setValue] = useState("");

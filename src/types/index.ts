@@ -1,6 +1,6 @@
 /** @format */
 
-export type Movie = {
+export type MovieType = {
   id: number;
   backdrop_path: string;
   poster_path: string;
@@ -18,7 +18,7 @@ export type Movie = {
   }[];
 };
 
-export type MovieCredit = {
+export type MovieCreditType = {
   adult: boolean;
   gender: number;
   id: number;
@@ -30,4 +30,12 @@ export type MovieCredit = {
   credit_id: string;
   department: string;
   job: string;
+};
+
+export type UserType = {
+  name: string;
+  email: string;
+  password: string;
+  avatarURL: string;
+  verify: boolean;
 };

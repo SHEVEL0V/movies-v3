@@ -3,19 +3,15 @@
 import React from "react";
 import { movies } from "@/services/fetch";
 import Image from "next/image";
-import { getBaseUrlImg } from "@/services/geUrlImg";
+import { getBaseUrlImg } from "@/helpers/geUrlImg";
 
-type Props = { params: { id: string }; searchParams: { actors: boolean } };
+type Props = { params: { id: string } };
 
-export default async function Actors({ params, searchParams }: Props) {
-  if (!searchParams.actors) {
-    return null;
-  }
-
+export default async function Actors({ params }: Props) {
   const data = await movies.getByIdCredits(params.id);
 
   return (
-    <div className="mt-10 grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-2">
       {data.cast.map((e, i) => (
         <div key={i} className="p-1 border rounded bg-bgDarkFirst">
           <Image
