@@ -6,6 +6,7 @@ export const PATH = {
   FAVORITES: "/favorites",
   GENRE: "/genre",
   ACTORS: "/actors",
+  USER: "/user",
   MOVIE: {
     DEFAULT: (id: string) => `/movie/${id}`,
     ACTORS: (id: string) => `/movie/${id}/actors`,

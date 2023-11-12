@@ -1,12 +1,10 @@
 /** @format */
 "use client";
 import Link from "next/link";
-
 import Modal from "@/components/modal";
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
-import { userService } from "@/db/services";
 import { PATH } from "@/router";
 
 import Button from "@mui/material/Button";
@@ -14,22 +12,29 @@ import Button from "@mui/material/Button";
 export default function Login() {
   const [message, setMessage] = useState("");
   const router = useRouter();
-  const action = async (formData: FormData) => {
-    const email = String(formData.get("email"));
-    const password = String(formData.get("password"));
+  // const pathName = usePathname();
 
-    const res = await userService.login(email, password);
-    setMessage(res.message);
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-    if (res.status) {
-      router.push("/");
+    const response = await fetch("/api/user/login", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data) {
+      setMessage(data.message);
+      router.push("/user");
     }
   };
 
   return (
     <Modal>
       <form
-        action={action}
+        onSubmit={onSubmit}
         className="flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
       >
         <p>{message}</p>

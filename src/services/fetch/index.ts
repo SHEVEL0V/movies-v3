@@ -10,13 +10,11 @@ type TypeRes = {
 };
 
 const searchParams = (page = "1", query?: string) =>
-  `?language=en-US&query=${query}&page=${page}&include_adult=true`;
+  `?api_key=4fc86b17259ac63837b074fbab2b63b2&language=en-US&query=${query}&page=${page}&include_adult=true`;
 
 const makeId = (id: string) => id.split("-").pop();
 
 export const movies = {
-  //================================================================
-  auth: (): Promise<{ success: boolean }> => fetchMovie("/authentication"),
   //================================================================
   getTrendWeek: (page: string): Promise<TypeRes> =>
     fetchMovie(`/trending/movie/week` + searchParams(page)),
@@ -35,4 +33,5 @@ export const movies = {
   //================================================================
   getByIdReviews: (id: string, page: string) =>
     fetchMovie("/movie/" + id + "/reviews" + searchParams(page)),
+  //================================================================
 };

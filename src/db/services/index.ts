@@ -1,21 +1,29 @@
 /** @format */
+"use server";
+import mongoose from "mongoose";
 
+import { auth } from "./auth";
 import { create } from "./create";
 import { login } from "./login";
 
-import { connectDB } from "@/db/connect";
+const connectString = process.env.MONGODB_KEY || "";
 
-const middleware = <T>(value: T) => {
+const middleware = async <T>(value?: T) => {
   try {
-    connectDB();
+    console.log(connectString);
+
+    await mongoose.connect(connectString);
+    // .then(() => console.log("✅ Connect MongoDB success"))
+    // .catch(() => console.log("🔴 Connect MongoDB failed"));
     return value;
   } catch (err) {
-    console.log(err);
+    console.log("🔴", err);
     throw err;
   }
 };
 
 export const userService = {
-  create: middleware(create),
-  login: middleware(login),
+  create,
+  login,
+  auth,
 };

@@ -1,18 +1,19 @@
 /** @format */
 
-import ProfileBtn from "../button/profileBtn";
+import ProfileBtn from "../button/userBtn";
 import LoginBtn from "../button/loginBtn";
 
 import Navigate from "./navigate";
-import { movies } from "@/services/fetch";
+import { auth } from "@/db/services/auth";
+import UserBtn from "../button/userBtn";
 
 export default async function Sidebar() {
-  const auth = await movies.auth();
+  const auntefication = await auth();
 
   return (
     <aside className="flex flex-col  rounded p-2  bg-bgWhiteSecond dark:bg-bgDarkThird">
       <Navigate />
-      {auth.success ? <ProfileBtn /> : <LoginBtn />}
+      {auntefication.status ? <UserBtn /> : <LoginBtn />}
     </aside>
   );
 }

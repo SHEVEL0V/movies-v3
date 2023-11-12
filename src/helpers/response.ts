@@ -1,8 +1,8 @@
 /** @format */
+import { NextResponse } from "next/server";
 
-const res = (message = "err", status = false) => {
-  console.log(message);
-  return { message, status };
+const response = (message = "message", status: number) => {
+  return NextResponse.json({ message }, { status });
 };
 
-export default res;
+export default response;

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { getBaseUrlImg } from "@/helpers/geUrlImg";
 import { PATH } from "@/router";
 
-import FavoriteIcon from "@mui/icons-material/Favorite";
-
 import type { MovieType } from "@/types";
+import FavoriteBtn from "../button/favoriteBtn";
+
 type Props = { movie: MovieType };
 
 export default function CardMovie({ movie }: Props) {
@@ -28,20 +28,7 @@ export default function CardMovie({ movie }: Props) {
           {vote_average.toFixed(1)}
         </div>
       </Link>
-      <form
-        className="absolute bottom-1 right-1 "
-        action={async () => {
-          "use server";
-          console.log("add");
-        }}
-      >
-        <button
-          className="p-1 border rounded-full hover:bg-bgDarkFirst/50 active:scale-95"
-          type="submit"
-        >
-          <FavoriteIcon />
-        </button>
-      </form>
+      <FavoriteBtn movie={movie} />
     </div>
   );
 }

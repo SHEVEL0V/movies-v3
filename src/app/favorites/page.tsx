@@ -1,7 +1,10 @@
 /** @format */
 
-import React from "react";
+import ListMovies from "@/components/listMovies";
+import { getMovie } from "@/db/services/getMovie";
 
-export default function Favorite() {
-  return <div>Favorite</div>;
+export default async function Favorite() {
+  const data = await getMovie();
+
+  return <ListMovies data={data} />;
 }

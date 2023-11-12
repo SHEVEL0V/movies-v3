@@ -8,7 +8,7 @@ export default function Pag() {
   const { add, get } = useParams();
 
   return (
-    <div className="flex justify-center mt-2 ">
+    <div className="flex justify-center  bg-yellow ">
       <Pagination
         color="secondary"
         count={10}
