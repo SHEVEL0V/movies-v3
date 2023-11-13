@@ -10,5 +10,5 @@ export const getMovie = async () => {
     .select({ _id: 0, __v: 0 })
     .then((data) => JSON.stringify(data))
     .then((data) => JSON.parse(data))
-    .catch(() => new Error("Movie not found"));
+    .catch(() => []);
 };

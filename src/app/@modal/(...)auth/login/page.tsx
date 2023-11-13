@@ -27,7 +27,8 @@ export default function Login() {
 
     if (data) {
       setMessage(data.message);
-      router.push("/user");
+      router.push("/");
+      router.refresh();
     }
   };
 

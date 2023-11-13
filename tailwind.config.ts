@@ -14,7 +14,7 @@ const config: Config = {
     extend: {},
     colors: {
       bgWhiteFirst: "#f1f5f9",
-      bgWhiteSecond: "#e2e8f0",
+      bgWhiteSecond: "#cbd5e1",
 
       bgDarkFirst: "#64748b",
       bgDarkSecond: "#334155",

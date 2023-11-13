@@ -8,9 +8,10 @@ export default function Pag() {
   const { add, get } = useParams();
 
   return (
-    <div className="flex justify-center  bg-yellow ">
+    <div className="flex justify-center mt-2 p-2  rounded bg-bgWhiteSecond dark:bg-bgDarkThird ">
       <Pagination
-        color="secondary"
+        color="primary"
+        variant="outlined"
         count={10}
         page={Number(get("page")) || 1}
         onChange={(_, v) => add("page", String(v))}

@@ -21,7 +21,7 @@ export default function CardMovie({ movie }: Props) {
     <div className="relative overflow-hidden  rounded-lg shadow ">
       <Link href={PATH.MOVIE.DEFAULT(path + "-" + id)}>
         <Image src={img} width={500} height={500} alt={title} />
-        <div className="absolute bottom-0 p-2 w-full rounded-lg bg-bgWhiteSecond/50 dark:bg-bgDarkSecond/60 font-bold ">
+        <div className="absolute bottom-0 p-3 w-full rounded-lg bg-bgWhiteSecond/50 dark:bg-bgDarkSecond/60 font-bold ">
           <h3>{title}</h3>
         </div>
         <div className="absolute top-2 right-2 rounded w-8 px-1 bg-yellow text-textBlack">

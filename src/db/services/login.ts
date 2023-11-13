@@ -1,18 +1,29 @@
 /** @format */
+"use server";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "@/db/schemas/user";
 import { cookies } from "next/headers";
+import { connectDB } from "../connect";
+import { useRouter, redirect } from "next/navigation";
 
 export const login = async (email: string, password: string) => {
-  const passwordDB = await User.findOne({ email }).select({ password: 1 });
+  await connectDB();
 
-  if (!passwordDB) {
-    throw new Error("🔴 User not found");
+  const user = await User.findOne({ email }).select({ password: 1, name: 1 });
+
+  if (!user) {
+    const message = "🔴 User not found";
+    console.error(message, 400);
+    return message;
+    // throw new Error("🔴 User not found");
   }
 
-  if (!(await bcrypt.compare(password, passwordDB.password))) {
-    throw new Error("🔴 Password does not match");
+  if (!(await bcrypt.compare(password, user.password))) {
+    const message = "🔴 Password does not match";
+    console.error(message, 400);
+    return message;
+    // throw new Error("🔴 Password does not match");
   }
 
   const secret = process.env.JWT_SECRET || "secret";
@@ -21,5 +32,6 @@ export const login = async (email: string, password: string) => {
 
   cookies().set("user", token);
 
-  return "The user has successfully logged in";
+  // return "The '" + user.name + "' has successfully logged in";
+  redirect("/");
 };

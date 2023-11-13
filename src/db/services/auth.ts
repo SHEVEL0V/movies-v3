@@ -1,4 +1,5 @@
 /** @format */
+"use server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
@@ -20,6 +21,8 @@ export const auth = async () => {
   const verify = jwt.verify(token, secret);
 
   if (verify) {
+    console.log("🚀 User authenticated");
+
     return res("Auntefication success", true);
   }
   return res("🔴 Auntefication error ");

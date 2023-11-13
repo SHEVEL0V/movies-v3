@@ -11,6 +11,6 @@ export const PATH = {
     DEFAULT: (id: string) => `/movie/${id}`,
     ACTORS: (id: string) => `/movie/${id}/actors`,
   },
-  LOGIN: "/auth/login",
-  REGISTER: "/auth/register",
+  LOGIN: "/login",
+  REGISTER: "/register",
 };
