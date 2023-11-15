@@ -8,7 +8,7 @@ const res = (message = "message", status = false) => ({
   status,
 });
 
-export const auth = async () => {
+export const auth = () => {
   const secret = process.env.JWT_SECRET || "secret";
   const user = cookies().get("user");
 

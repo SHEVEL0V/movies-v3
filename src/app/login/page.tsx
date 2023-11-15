@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { useRouter, redirect } from "next/navigation";
 import { PATH } from "@/router";
 
 import Button from "@mui/material/Button";
@@ -11,20 +10,14 @@ import { login } from "@/db/services/login";
 
 export default function Login() {
   const [message, setMessage] = useState("");
-  // const router = useRouter();
-  // const pathName = usePathname();
 
   const action = async (formData: FormData) => {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    try {
-      const res = await login(email as string, password as string);
+    const res = await login(email as string, password as string);
 
-      setMessage(res);
-    } catch (err) {
-      console.error((err as Error).message, 400);
-    }
+    setMessage(res);
   };
 
   return (

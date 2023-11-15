@@ -1,7 +1,7 @@
 /** @format */
 import Sidebar from "@/components/sidebar";
 import Container from "@/components/container/container";
-import InputSearch from "@/components/header/inputSearch";
+import Header from "@/components/header";
 import { auth } from "@/db/services/auth";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  // modal: React.ReactNode;
+  modal: React.ReactNode;
 }) {
-  const auntefication = await auth();
+  const auntefication = auth();
   return (
     <html lang="en">
       <body
@@ -29,10 +29,11 @@ export default async function RootLayout(props: {
         <Container>
           <Sidebar />
           <main className="w-full">
-            <InputSearch auth={auntefication.status} />
+            <Header auth={auntefication.status} />
             {props.children}
           </main>
         </Container>
+        {props.modal}
       </body>
     </html>
   );

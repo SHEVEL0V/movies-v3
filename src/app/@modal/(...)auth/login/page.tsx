@@ -1,44 +1,40 @@
 /** @format */
 "use client";
 import Link from "next/link";
-import Modal from "@/components/modal";
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { PATH } from "@/router";
 
 import Button from "@mui/material/Button";
+import { login } from "@/db/services/login";
+import Modal from "@/components/modal";
 
 export default function Login() {
   const [message, setMessage] = useState("");
-  const router = useRouter();
+  // const router = useRouter();
   // const pathName = usePathname();
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  const action = async (formData: FormData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-    const response = await fetch("/api/user/login", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const res = await login(email as string, password as string);
 
-    const data = await response.json();
-
-    if (data) {
-      setMessage(data.message);
-      router.push("/");
-      router.refresh();
+      setMessage(res);
+    } catch (err) {
+      console.error((err as Error).message, 400);
     }
   };
 
   return (
     <Modal>
       <form
-        onSubmit={onSubmit}
-        className="flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
+        action={action}
+        className="w-full flex flex-col gap-3 p-4 rounded shadow bg-white"
       >
-        <p>{message}</p>
+        <p className="text-textBlack">{message}</p>
         <TextField
           name="email"
           label="email"

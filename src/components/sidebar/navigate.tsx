@@ -6,14 +6,17 @@ import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SortIcon from "@mui/icons-material/Sort";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
+
 import { PATH } from "@/router";
 
 export default function Navigate() {
   const router = useRouter();
   const pathname = usePathname();
+
   return (
     <nav className=" flex flex-col gap-3">
       <MenuBtn
+        name="Home"
         title="Home"
         path={pathname}
         onClick={() => router.push(PATH.HOME)}
@@ -21,6 +24,7 @@ export default function Navigate() {
         <HomeIcon />
       </MenuBtn>
       <MenuBtn
+        name="Favorite"
         title="Favorite"
         path={pathname}
         onClick={() => router.push(PATH.FAVORITES)}
@@ -28,6 +32,7 @@ export default function Navigate() {
         <FavoriteIcon />
       </MenuBtn>
       <MenuBtn
+        name="Genre"
         title="Genre"
         path={pathname}
         onClick={() => router.push(PATH.GENRE)}
@@ -35,6 +40,7 @@ export default function Navigate() {
         <SortIcon />
       </MenuBtn>
       <MenuBtn
+        name="Actors"
         title="Actors"
         path={pathname}
         onClick={() => router.push(PATH.ACTORS)}

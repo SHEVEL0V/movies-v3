@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { User } from "@/db/schemas/user";
 import { cookies } from "next/headers";
 import { connectDB } from "../connect";
-import { useRouter, redirect } from "next/navigation";
+import {  redirect } from "next/navigation";
 
 export const login = async (email: string, password: string) => {
   await connectDB();

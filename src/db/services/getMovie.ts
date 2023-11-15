@@ -2,7 +2,6 @@
 
 import { connectDB } from "../connect";
 import { Favorite } from "../schemas/favorite";
-import type { MovieType } from "@/types";
 
 export const getMovie = async () => {
   await connectDB();

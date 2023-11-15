@@ -9,8 +9,17 @@ type TypeRes = {
   total_results: number;
 };
 
-const searchParams = (page = "1", query?: string) =>
-  `?api_key=4fc86b17259ac63837b074fbab2b63b2&language=en-US&query=${query}&page=${page}&include_adult=true`;
+const searchParams = (page?: string, query?: string) => {
+  const params = {
+    api_key: "?api_key=4fc86b17259ac63837b074fbab2b63b2",
+    lang: "language=en",
+    query: query && "query=" + query,
+    page: page && "page=" + page,
+    adult: "include_adult=true",
+  };
+
+  return Object.values(params).join("&");
+};
 
 const makeId = (id: string) => id.split("-").pop();
 
@@ -19,7 +28,7 @@ export const movies = {
   getTrendWeek: (page: string): Promise<TypeRes> =>
     fetchMovie(`/trending/movie/week` + searchParams(page)),
   //================================================================
-  getById: (id: string, page: string): Promise<MovieType> =>
+  getById: (id: string, page?: string): Promise<MovieType> =>
     fetchMovie("/movie/" + makeId(id) + searchParams(page)),
   //================================================================
   getByIdCredits: (
@@ -34,4 +43,11 @@ export const movies = {
   getByIdReviews: (id: string, page: string) =>
     fetchMovie("/movie/" + id + "/reviews" + searchParams(page)),
   //================================================================
+  getGenres: () => fetchMovie("/genre/movie/list" + searchParams()),
+  //================================================================
+  // discover/movie
+  getByGenreId: (genre: string, page?: string): Promise<TypeRes> =>
+    fetchMovie(
+      "/discover/movie" + searchParams(page) + "&with_genres=" + genre
+    ),
 };

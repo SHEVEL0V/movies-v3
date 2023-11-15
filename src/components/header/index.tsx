@@ -10,7 +10,7 @@ import UserBtn from "../button/userBtn";
 import Link from "next/link";
 import { PATH } from "@/router";
 
-export default function InputSearch({ auth }: { auth: boolean }) {
+export default function Header({ auth }: { auth: boolean }) {
   const [value, setValue] = useState("");
 
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function InputSearch({ auth }: { auth: boolean }) {
   const handlerRoute = () => router.push(PATH.SEARCH + "?" + "query=" + value);
 
   return (
-    <div className="flex mb-2 p-2 bg-bgWhiteSecond dark:bg-bgDarkThird rounded">
+    <div className="flex mb-2 p-2  bg-bgWhiteSecond dark:bg-bgDarkThird rounded">
       <div
         className="border rounded border-bgDarkSecond dark:border-bgWhiteSecond
        hover:dark:bg-bgDarkSecond hover:bg-bgWhiteFirst "
@@ -39,7 +39,7 @@ export default function InputSearch({ auth }: { auth: boolean }) {
         {auth ? (
           <UserBtn />
         ) : (
-          <Link href={PATH.LOGIN} className="flex items-center  ">
+          <Link href={PATH.LOGIN} className="flex items-center pr-2 ">
             Login
           </Link>
         )}

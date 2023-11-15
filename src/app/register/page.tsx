@@ -3,36 +3,35 @@
 import Modal from "@/components/modal";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { userService } from "@/db/services";
 import Link from "next/link";
 import { PATH } from "@/router";
-import { useRouter } from "next/navigation";
+import { create } from "@/db/services/create";
 
 import Button from "@mui/material/Button";
 
 export default function Login() {
   const [message, setMessage] = useState("");
-  const router = useRouter();
+
   const action = async (formData: FormData) => {
     const name = String(formData.get("name"));
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
     const password2 = String(formData.get("password2"));
 
-    const res = await userService.create({ name, email, password, password2 });
-
-    setMessage(res.message);
-
-    if (res.status) {
-      router.push(PATH.LOGIN);
-    }
+    const res = await create({
+      name,
+      email,
+      password,
+      password2,
+    });
+    setMessage(res);
   };
   return (
     <form
       action={action}
       className="flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
     >
-      <p>{message}</p>
+      <p className="text-textBlack">{message}</p>
       <TextField
         name="name"
         label="name"

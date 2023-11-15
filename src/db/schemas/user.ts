@@ -30,8 +30,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-  },
-  { versionKey: false, timestamps: true }
+  }
+  // { versionKey: false, timestamps: true }
 );
 
-export const User = mongoose.model("user", userSchema);
+export const User =
+  mongoose.models.users || mongoose.model("users", userSchema);

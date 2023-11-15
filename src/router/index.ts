@@ -4,7 +4,7 @@ export const PATH = {
   HOME: "/",
   SEARCH: "/search",
   FAVORITES: "/favorites",
-  GENRE: "/genre",
+  GENRE: "/genres",
   ACTORS: "/actors",
   USER: "/user",
   MOVIE: {
