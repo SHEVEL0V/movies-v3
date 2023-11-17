@@ -1,8 +1,8 @@
 /** @format */
 "use server";
-import { Favorite } from "../schemas/favorite";
+import { Favorite } from "../../schemas/favorite";
 
-export const removeMovie = async (id: string): Promise<boolean> => {
+export const removeFavMovie = async (id: string): Promise<boolean> => {
   return await Favorite.findOneAndDelete({ id })
     .then((res) => {
       console.log(

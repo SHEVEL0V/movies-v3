@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import { PATH } from "@/router";
 
 import Button from "@mui/material/Button";
-import { login } from "@/db/services/login";
+import { login } from "@/db/services/auth/login";
 
 export default function Login() {
   const [message, setMessage] = useState("");

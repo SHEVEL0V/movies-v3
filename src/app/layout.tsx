@@ -2,7 +2,7 @@
 import Sidebar from "@/components/sidebar";
 import Container from "@/components/container/container";
 import Header from "@/components/header";
-import { auth } from "@/db/services/auth";
+import { auth } from "@/db/services/auth/authorization";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

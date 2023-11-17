@@ -39,3 +39,12 @@ export type UserType = {
   avatarURL: string;
   verify: boolean;
 };
+
+export type AuthType = { email: string; userID: string; status: boolean };
+
+export type ReviewsType = {
+  author: string;
+  content: string;
+  created_at: string;
+  url: string;
+};

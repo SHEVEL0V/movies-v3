@@ -1,20 +1,24 @@
 /** @format */
 
+import Filter from "@/components/filter";
 import ListMovies from "@/components/listMovies";
-import { movies } from "@/services/fetch";
-import React from "react";
+import { movies } from "@/fetch";
 
-type P = {
+type Params = {
   searchParams: {
     page: string;
-    id: string;
+    with_genres: string;
+    sort_by: string;
   };
 };
 
-export default async function Genre({ searchParams }: P) {
-  const { page, id } = searchParams;
+export default async function Genre({ searchParams }: Params) {
+  const data = await movies.getByGenreId(searchParams);
 
-  const data = await movies.getByGenreId(id, page);
-
-  return <ListMovies data={data.results} />;
+  return (
+    <>
+      <Filter />
+      <ListMovies data={data} />
+    </>
+  );
 }

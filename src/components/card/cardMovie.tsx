@@ -8,9 +8,11 @@ import { PATH } from "@/router";
 import type { MovieType } from "@/types";
 import FavoriteBtn from "../button/favoriteBtn";
 
-type Props = { movie: MovieType };
+import type { AuthType } from "@/types";
 
-export default function CardMovie({ movie }: Props) {
+type Props = { movie: MovieType; auth: AuthType };
+
+export default function CardMovie({ movie, auth }: Props) {
   const { id, backdrop_path, title, vote_average } = movie;
 
   const img = getBaseUrlImg(backdrop_path);
@@ -28,7 +30,7 @@ export default function CardMovie({ movie }: Props) {
           {vote_average.toFixed(1)}
         </div>
       </Link>
-      <FavoriteBtn movie={movie} />
+      {auth.status && <FavoriteBtn movie={movie} user={auth.userID} />}
     </div>
   );
 }

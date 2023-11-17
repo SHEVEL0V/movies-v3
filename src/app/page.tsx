@@ -1,13 +1,13 @@
 /** @format */
 import ListMovies from "@/components/listMovies";
-import { movies } from "@/services/fetch";
+import { movies } from "@/fetch";
 
-type P = {
-  searchParams: { page: string };
+type Params = {
+  searchParams: { page: string; sort_by: string };
 };
 
-export default async function Home({ searchParams }: P) {
-  const data = await movies.getTrendWeek(searchParams.page);
+export default async function Home({ searchParams }: Params) {
+  const data = await movies.getTrendWeek(searchParams);
 
-  return <ListMovies data={data.results} />;
+  return <ListMovies data={data} />;
 }

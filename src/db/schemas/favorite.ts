@@ -3,6 +3,7 @@
 import mongoose from "mongoose";
 
 const movieSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
   adult: Boolean,
   backdrop_path: String,
   id: Number,

@@ -10,6 +10,7 @@ export const PATH = {
   MOVIE: {
     DEFAULT: (id: string) => `/movie/${id}`,
     ACTORS: (id: string) => `/movie/${id}/actors`,
+    REVIEWS: (id: string) => `/movie/${id}/reviews`,
   },
   LOGIN: "/login",
   REGISTER: "/register",

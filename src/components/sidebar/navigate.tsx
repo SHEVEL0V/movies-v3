@@ -5,7 +5,6 @@ import { useRouter, usePathname } from "next/navigation";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SortIcon from "@mui/icons-material/Sort";
-import RecentActorsIcon from "@mui/icons-material/RecentActors";
 
 import { PATH } from "@/router";
 
@@ -38,14 +37,6 @@ export default function Navigate() {
         onClick={() => router.push(PATH.GENRE)}
       >
         <SortIcon />
-      </MenuBtn>
-      <MenuBtn
-        name="Actors"
-        title="Actors"
-        path={pathname}
-        onClick={() => router.push(PATH.ACTORS)}
-      >
-        <RecentActorsIcon />
       </MenuBtn>
     </nav>
   );

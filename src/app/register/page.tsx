@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import { PATH } from "@/router";
-import { create } from "@/db/services/create";
+import { create } from "@/db/services/auth/create";
 
 import Button from "@mui/material/Button";
 

@@ -6,7 +6,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
-import { logout } from "@/db/services/logout";
+import { logout } from "@/db/services/auth/logout";
 
 export default function UserBtn() {
   const router = useRouter();

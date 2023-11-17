@@ -1,12 +1,17 @@
 /** @format */
 
+import Filter from "@/components/filter";
 import ListMovies from "@/components/listMovies";
-import { movies } from "@/services/fetch";
+import { movies } from "@/fetch";
 
 type Props = { searchParams: { query: string; page: string } };
 
 export default async function Search({ searchParams }: Props) {
-  // const data = await movies.getQuery(searchParams.query, searchParams.page);
+  const data = await movies.getQuery(searchParams);
 
-  return;
+  return (
+    <>
+      <ListMovies data={data} />
+    </>
+  );
 }

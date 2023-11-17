@@ -4,22 +4,47 @@ import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-import { addMovie } from "@/db/services/addMovie";
-import { removeMovie } from "@/db/services/removeMovie";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import { addFavMovie } from "@/db/services/movie/add";
+import { removeFavMovie } from "@/db/services/movie/remove";
 import type { MovieType } from "@/types";
 
-export default function FavoriteBtn({ movie }: { movie: MovieType }) {
+export default function FavoriteBtn({
+  movie,
+  user,
+}: {
+  movie: MovieType;
+  user: string;
+}) {
   const [checked, setChecked] = useState(false);
+  const [loader, setLoader] = useState(false);
 
-  const add = async () => setChecked(await addMovie(movie));
+  const add = async () => {
+    setLoader(true);
+    const res = await addFavMovie({ ...movie, user });
+    setLoader(false);
+    setChecked(res);
+  };
 
-  const remove = async () => setChecked(await removeMovie(String(movie.id)));
+  const remove = async () => {
+    setLoader(true);
+    const res = await removeFavMovie(String(movie.id));
+    setLoader(false);
+    setChecked(res);
+  };
 
   return (
     <Checkbox
-      className="absolute right-1 bottom-1 bg-bgWhiteSecond hover:bg-bgWhiteFirst"
+      className="absolute right-1 bottom-1 bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst"
       size="small"
-      icon={<FavoriteBorder />}
+      color="error"
+      icon={
+        loader ? (
+          <AutorenewIcon className={"animate-spin"} />
+        ) : (
+          <FavoriteBorder />
+        )
+      }
       checkedIcon={<Favorite />}
       checked={checked}
       onChange={(_, checked) => (checked ? add() : remove())}

@@ -1,16 +1,18 @@
 /** @format */
 "use server";
-import { Favorite } from "../schemas/favorite";
+import { Favorite } from "../../schemas/favorite";
 
 import type { MovieType } from "@/types";
+type User = { user: string };
+type Data = MovieType & User;
 
-export const addMovie = async (data: MovieType): Promise<boolean> => {
+export const addFavMovie = async (data: Data): Promise<boolean> => {
   const movie = new Favorite(data);
 
   const res = await Favorite.find({ id: movie.id });
 
   if (res.length) {
-    console.log("🔴 Movie is already added");
+    console.log("❗Movie is already added");
     return false;
   }
 
@@ -22,7 +24,7 @@ export const addMovie = async (data: MovieType): Promise<boolean> => {
     })
 
     .catch(() => {
-      console.log("❗ Movie added failed to save");
+      console.log("🚫 Movie added failed to save");
       return false;
     });
 };

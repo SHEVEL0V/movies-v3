@@ -3,7 +3,7 @@
 import bcrypt from "bcrypt";
 import { User } from "@/db/schemas/user";
 import { redirect } from "next/navigation";
-import { connectDB } from "../connect";
+import { connectDB } from "../../connect";
 type Input = {
   name: string;
   email: string;
@@ -17,10 +17,10 @@ export const create = async ({ name, email, password, password2 }: Input) => {
   const find = await User.find({ email });
 
   if (find.length) {
-    return "🔴 Email is already created";
+    return "❗Email is already created";
   }
   if (password !== password2) {
-    return "🔴 Password not coincide";
+    return "❗Password not coincide";
   }
 
   const user = new User({
@@ -32,9 +32,10 @@ export const create = async ({ name, email, password, password2 }: Input) => {
   const res = await user
     .save()
     .then(() => "successfully")
-    .catch((err: Error) => err.message);
+    .catch((err: Error) => "🚫" + err.message);
 
   if (res === "successfully") {
+    console.log("😊 User created successfully");
     redirect("/login");
   }
 

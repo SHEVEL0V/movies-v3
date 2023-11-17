@@ -1,11 +1,11 @@
 /** @format */
 
-import { movies } from "@/services/fetch";
+import { movies } from "@/fetch";
 import Image from "next/image";
 import { getBaseUrlImg } from "@/helpers/geUrlImg";
 import MovieRating from "@/components/UI/rating";
-import Link from "next/link";
-import { PATH } from "@/router";
+// import Link from "next/link";
+// import { PATH } from "@/router";
 
 type Props = { params: { id: string } };
 
@@ -17,6 +17,7 @@ export default async function MovieLayout(props: Props) {
     <div>
       <div className="grid gap-1 grid-cols-3 ">
         <Image
+          className="rounded shadow"
           src={getBaseUrlImg(data.poster_path)}
           width={400}
           height={400}
@@ -43,25 +44,23 @@ export default async function MovieLayout(props: Props) {
             {data.production_companies.map((item) => (
               <div
                 key={item.id}
-                className="p-1 border rounded bg-bgWhiteSecond dark:bg-bgDarkFirst"
+                className="flex flex-col min-w-[80px] p-1 shadow  rounded bg-bgWhiteSecond dark:bg-bgDarkThird/30"
               >
                 <Image
+                  className="my-auto"
                   src={getBaseUrlImg(item.logo_path)}
                   height={100}
                   width={100}
                   alt={item.name}
                 />
-                <div className="mt-auto">{item.name}</div>
+                {/* <div className="mt-auto bg-bgDarkSecond rounded">
+                  {item.name}
+                </div> */}
               </div>
             ))}
           </div>
         </div>
         <div className="col-span-3">{data.overview}</div>
-      </div>
-      <div className="border rounded mt-4 p-2 hover:bg-bgDarkThird/50">
-        <Link href={PATH.MOVIE.ACTORS(id)} className="">
-          Actors opened in
-        </Link>
       </div>
     </div>
   );
