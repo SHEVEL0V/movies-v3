@@ -9,7 +9,7 @@ export default function Container({
 }) {
   return (
     <div
-      className=" flex m-2 w-[1280px] min-h-screen p-4 rounded-2xl
+      className=" flex m-2 w-[1280px] min-h-screen p-4 rounded-2xl shadow
      bg-bgWhiteFirst text-textBlack  dark:bg-bgDarkSecond dark:text-textWhite"
     >
       {children}

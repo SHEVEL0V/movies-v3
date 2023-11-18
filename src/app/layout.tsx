@@ -23,7 +23,8 @@ export default async function RootLayout(props: {
     <html lang="en">
       <body
         className={
-          "bg-bgDarkFirst flex justify-center relative" + inter.className
+          " flex justify-center relative bg-[url(../assets/bg.jpg)] " +
+          inter.className
         }
       >
         <Container>
