@@ -9,6 +9,8 @@ import { MovieType } from "@/types";
 export const getFavMovie = async () => {
   const user = auth().userID;
 
+  await connectDB();
+
   return Favorite.find({ user })
     .select({ _id: 0, __v: 0 })
     .then((data) => JSON.stringify(data))
@@ -19,8 +21,5 @@ export const getFavMovie = async () => {
         total_pages: res.length > 20 ? 2 : 1,
       };
     })
-    .catch(() => ({
-      results: [],
-      total_pages: 1,
-    }));
+    .catch(() => {});
 };

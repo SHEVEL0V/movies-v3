@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <form
       action={action}
-      className="flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
+      className="flex max-w-[600px] flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
     >
       <p className="text-textBlack">{message}</p>
       <TextField

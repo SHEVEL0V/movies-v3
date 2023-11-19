@@ -55,17 +55,34 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 export default function ThemSwitches() {
   const [them, setThem] = useState(true);
 
+  const onChange = (checked: boolean) => {
+    if (checked) {
+      setThem(!them);
+      localStorage.setItem("theme", "dark");
+    } else {
+      setThem(!them);
+      localStorage.setItem("theme", "white");
+    }
+  };
+
   useEffect(() => {
-    if (them && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      setThem(true);
       document.documentElement.classList.add("dark");
     } else {
+      setThem(false);
       document.documentElement.classList.remove("dark");
     }
   }, [them]);
 
   return (
     <FormControlLabel
-      onChange={() => setThem(!them)}
+      checked={them}
+      onChange={(_, checked) => onChange(checked)}
       control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
       label=""
     />

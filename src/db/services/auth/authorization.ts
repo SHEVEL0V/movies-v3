@@ -27,7 +27,7 @@ export const auth = () => {
   const verify = jwt.verify(token, secret);
 
   if (verify) {
-    console.log("🔑 User authenticated");
+    console.log("🔑 Auth");
 
     return res(true, (verify as AuthType).email, (verify as AuthType).userID);
   }

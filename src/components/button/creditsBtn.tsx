@@ -17,7 +17,7 @@ export default function CreditsBtn({ id }: { id: string }) {
     <Button
       variant="outlined"
       color={"inherit"}
-      className="w-full mt-2"
+      className="w-full mb-2"
       onClick={() =>
         path ? router.back() : router.push(PATH.MOVIE.ACTORS(id))
       }

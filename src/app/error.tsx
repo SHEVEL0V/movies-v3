@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
+    <div className="bg-yellow">
       <h2>Something went wrong!</h2>
       <button
         onClick={

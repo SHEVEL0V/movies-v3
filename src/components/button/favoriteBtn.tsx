@@ -8,6 +8,7 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { addFavMovie } from "@/db/services/movie/add";
 import { removeFavMovie } from "@/db/services/movie/remove";
 import type { MovieType } from "@/types";
+import { usePathname } from "next/navigation";
 
 export default function FavoriteBtn({
   movie,
@@ -16,7 +17,8 @@ export default function FavoriteBtn({
   movie: MovieType;
   user: string;
 }) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(usePathname() === "/favorites");
+
   const [loader, setLoader] = useState(false);
 
   const add = async () => {

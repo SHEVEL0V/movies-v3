@@ -1,6 +1,7 @@
 /** @format */
 "use server";
 import { Favorite } from "../../schemas/favorite";
+import { revalidateTag } from "next/cache";
 
 import type { MovieType } from "@/types";
 type User = { user: string };
@@ -20,6 +21,7 @@ export const addFavMovie = async (data: Data): Promise<boolean> => {
     .save()
     .then(() => {
       console.log("✅ Movie '" + data.title + "' added favorite successfully");
+      revalidateTag("favorites");
       return true;
     })
 
