@@ -1,5 +1,5 @@
 /** @format */
-
+"use server";
 import { connectDB } from "@/db/connect";
 import { User } from "@/db/schemas/user";
 import { UserType } from "@/types";

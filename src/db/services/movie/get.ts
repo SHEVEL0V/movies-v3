@@ -1,5 +1,5 @@
 /** @format */
-
+"use server"
 import { connectDB } from "../../connect";
 import { Favorite } from "../../schemas/favorite";
 import { auth } from "../auth/authorization";

@@ -15,17 +15,25 @@ export default async function User() {
   const user = await getUser(id);
 
   return (
-    <div className=" flex bg-bgWhiteSecond">
-      <Image
-        placeholder="blur"
+    <div className=" flex gap-2 bg-bgWhiteSecond dark:bg-bgDarkThird">
+      <div className="p-2">
+        <div className="bg-yellow/50 w-[400px] h-[500px] rounded"></div>
+      </div>
+
+      {/* <Image
+        // placeholder="blur"
         src={user.avatarURL}
         height={500}
         width={500}
         alt={user.name}
-      />
-      <div>
-        <div>{user.name}</div>
-        <div>{user.email}</div>
+      /> */}
+      <div className="p-2 flex flex-col gap-2">
+        <div className="p-2 rounded min-w-[400px] bg-bgWhiteFirst dark:bg-bgDarkSecond">
+          {user?.name}
+        </div>
+        <div className="p-2 rounded min-w-[400px] bg-bgWhiteFirst dark:bg-bgDarkSecond">
+          {user?.email}
+        </div>
       </div>
     </div>
   );

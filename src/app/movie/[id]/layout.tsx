@@ -12,7 +12,7 @@ export default function MovieLayout(props: {
   const id = props.params.id;
 
   return (
-    <div className="p-2">
+    <div className="h-[90%] p-2 overflow-auto ">
       {props.children}
       <CreditsBtn id={id} />
       {props.credits}

@@ -1,6 +1,5 @@
 /** @format */
 
-import Filter from "@/components/filter";
 import ListMovies from "@/components/listMovies";
 import { movies } from "@/fetch";
 
@@ -15,10 +14,5 @@ type Params = {
 export default async function Genre({ searchParams }: Params) {
   const data = await movies.getByGenreId(searchParams);
 
-  return (
-    <>
-      <Filter />
-      <ListMovies data={data} />
-    </>
-  );
+  return <ListMovies data={data} />;
 }

@@ -5,6 +5,7 @@ import { useParams } from "@/hooks/useParams";
 
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { usePathname } from "next/navigation";
 
 const button = [
   { param: "popularity.desc", title: "Popular", svg: <ArrowDropDownIcon /> },
@@ -19,6 +20,10 @@ const button = [
 
 export default function Filter() {
   const { add } = useParams();
+
+  if (!usePathname().split("/").includes("genres")) {
+    return;
+  }
 
   return (
     <div className="flex flex-wrap gap-2 items-center rounded mb-2 p-1 dark:bg-bgDarkThird ">
