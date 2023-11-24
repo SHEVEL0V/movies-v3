@@ -1,6 +1,8 @@
 /** @format */
 
 export type MovieType = {
+  uid?: string;
+  doc?: string;
   id: number;
   backdrop_path: string;
   poster_path: string;

@@ -10,9 +10,9 @@ import FavoriteBtn from "../button/favoriteBtn";
 
 import type { AuthType } from "@/types";
 
-type Props = { movie: MovieType; auth: AuthType };
+type Props = { movie: MovieType };
 
-export default function CardMovie({ movie, auth }: Props) {
+export default function CardMovie({ movie }: Props) {
   const { id, backdrop_path, title, vote_average } = movie;
 
   const img = getBaseUrlImg(backdrop_path);
@@ -30,7 +30,7 @@ export default function CardMovie({ movie, auth }: Props) {
           {vote_average.toFixed(1)}
         </div>
       </Link>
-      {auth.status && <FavoriteBtn movie={movie} user={auth.userID} />}
+      <FavoriteBtn movie={movie} />
     </div>
   );
 }

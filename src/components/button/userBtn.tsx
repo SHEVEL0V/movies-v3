@@ -6,7 +6,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
-import { logout } from "@/db/services/auth/logout";
+import { deleteUidToCookie } from "@/firebase/server";
 
 export default function UserBtn() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export default function UserBtn() {
         onClose={handleClose}
       >
         <MenuItem onClick={() => router.push("/user")}>Profile</MenuItem>
-        <MenuItem onClick={() => logout()}>Out</MenuItem>
+        <MenuItem onClick={() => deleteUidToCookie()}>Out</MenuItem>
       </Menu>
     </div>
   );

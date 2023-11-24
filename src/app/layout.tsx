@@ -2,11 +2,10 @@
 import Sidebar from "@/components/sidebar";
 import Container from "@/components/container/container";
 import Header from "@/components/header";
-import { auth } from "@/db/services/auth/authorization";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import { isAuth } from "@/firebase/server";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,7 +17,8 @@ export default async function RootLayout(props: {
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const auntefication = auth();
+  const auth = await isAuth();
+
   return (
     <html lang="en">
       <body
@@ -30,7 +30,7 @@ export default async function RootLayout(props: {
         <Container>
           <Sidebar />
           <main className="w-full">
-            <Header auth={auntefication.status} />
+            <Header user={auth?.uid} />
             {props.children}
           </main>
         </Container>

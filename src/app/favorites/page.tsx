@@ -1,12 +1,13 @@
 /** @format */
 
 import ListMovies from "@/components/listMovies";
-import { getFavMovie } from "@/db/services/movie/get";
+import { getMovie } from "@/firebase/server";
 
 export default async function Favorite() {
-  const data = await getFavMovie();
+  const movies = await getMovie();
+  const data = { results: movies, total_pages: movies.length };
 
-  if (data?.results) {
+  if (movies.length > 0) {
     return <ListMovies data={data} />;
   }
 
