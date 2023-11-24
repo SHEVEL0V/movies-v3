@@ -83,7 +83,7 @@ export default function ThemSwitches() {
     <FormControlLabel
       checked={them}
       onChange={(_, checked) => onChange(checked)}
-      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+      control={<MaterialUISwitch sx={{ m: 1 }} />}
       label=""
     />
   );

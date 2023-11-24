@@ -12,7 +12,7 @@ export default function Header({ user }: { user?: string }) {
     <div className="flex mb-2 p-2  bg-bgWhiteSecond dark:bg-bgDarkThird rounded">
       <InputSearch />
       <div className="ml-auto flex">
-        {/* <ThemSwitches /> */}
+        <ThemSwitches />
         {user ? (
           <UserBtn />
         ) : (

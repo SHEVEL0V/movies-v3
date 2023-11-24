@@ -2,10 +2,11 @@
 "use client";
 import React from "react";
 import Fab from "@mui/material/Fab";
-
-import GoogleIcon from "@mui/icons-material/Google";
 import { loginGoogle } from "@/firebase/client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+import img from "../../assets/google-svgrepo-com.svg";
 
 export default function GoogleAuthBtn() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function GoogleAuthBtn() {
 
   return (
     <Fab size="small" aria-label="googleAuth" onClick={() => handelAuth()}>
-      <GoogleIcon />
+      <Image src={img} alt="google svg" />
     </Fab>
   );
 }
