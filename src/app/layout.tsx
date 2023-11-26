@@ -23,13 +23,13 @@ export default async function RootLayout(props: {
     <html lang="en">
       <body
         className={
-          "overflow-hidden flex  justify-center relative bg-[url(../assets/bg.jpg)] " +
+          "overflow-hidden flex pt-1 justify-center relative bg-[url(../assets/bg.jpg)] " +
           inter.className
         }
       >
         <Container>
           <Sidebar />
-          <main className="w-full">
+          <main className="w-full flex flex-col">
             <Header user={auth?.uid} />
             {props.children}
           </main>

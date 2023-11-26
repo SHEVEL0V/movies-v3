@@ -4,7 +4,6 @@ import { movies } from "@/fetch";
 import Image from "next/image";
 import { getBaseUrlImg } from "@/helpers/geUrlImg";
 import MovieRating from "@/components/UI/rating";
-import type { Metadata } from "next";
 type Props = { params: { id: string } };
 
 export default async function MovieLayout(props: Props) {

@@ -9,25 +9,33 @@ import { PATH } from "@/router";
 
 export default function InputSearch() {
   const [value, setValue] = useState("");
+  const [focus, setFocus] = useState(false);
 
   const router = useRouter();
 
-  const handlerRoute = () => value && router.push(PATH.SEARCH + "?" + "query=" + value);
+  const handlerRoute = () => router.push(PATH.SEARCH + "?" + "query=" + value);
 
   return (
     <div
       className="flex border rounded border-bgDarkSecond dark:border-bgWhiteSecond
- hover:dark:bg-bgDarkSecond hover:bg-bgWhiteFirst 
-  transition-all duration-500"
+ hover:dark:bg-bgDarkSecond focus-within:dark:bg-bgDarkSecond hover:bg-bgWhiteFirst focus-within:bg-bgWhiteFirst transition-all duration-300"
     >
       <InputBase
-        className="m-2 text-textBlack dark:text-textWhite "
+        onFocus={() => setFocus(true)}
+        onBlur={() => !value && setFocus(false)}
+        style={{ marginRight: focus ? "30px" : "" }}
+        className="m-2 text-textBlack dark:text-textWhite transition-all duration-300 "
         placeholder="search"
         inputProps={{ "aria-label": "search input" }}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <IconButton className="mr-auto" type="button" onClick={handlerRoute}>
+      <IconButton
+        disabled={!value}
+        className="mr-auto"
+        type="button"
+        onClick={handlerRoute}
+      >
         <SearchIcon className="fill-textBlack dark:fill-textWhite" />
       </IconButton>
     </div>

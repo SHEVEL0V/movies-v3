@@ -12,6 +12,6 @@ export const PATH = {
     ACTORS: (id: string) => `/movie/${id}/actors`,
     REVIEWS: (id: string) => `/movie/${id}/reviews`,
   },
-  LOGIN: "/auth/login",
+  LOGIN: "/auth",
   REGISTER: "/auth/register",
 };
