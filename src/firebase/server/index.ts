@@ -5,13 +5,16 @@ import { cert, initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
-const app = initializeApp({
-  credential: cert({
-    projectId: process.env.PROJECT_ID,
-    clientEmail: process.env.CLIENT_EMAIL,
-    privateKey: process.env.PRIVATE_KEY,
-  }),
-});
+const app = initializeApp(
+  {
+    credential: cert({
+      projectId: process.env.PROJECT_ID,
+      clientEmail: process.env.CLIENT_EMAIL,
+      privateKey: process.env.PRIVATE_KEY,
+    }),
+  },
+  String(Date.now())
+);
 
 //===========cookie================================
 const uid = () => cookies().get("uid")?.value || "";
