@@ -1,6 +1,6 @@
 /** @format */
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL || "https://api.themoviedb.org/3";
 // const TOKEN = process.env.TOKEN;
 
 export const fetchMovie = async (url: string, method?: "GET" | "POST") => {

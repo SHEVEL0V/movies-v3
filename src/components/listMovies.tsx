@@ -5,7 +5,7 @@ import CardFilm from "@/components/card/cardMovie";
 import Pag from "./pagination";
 import Filter from "@/components/filter";
 import type { MovieType } from "@/types";
-import { getMovie } from "@/firebase/server";
+// import { getMovie } from "@/firebase/server";
 
 type Props = { data: { results: MovieType[]; total_pages: number } };
 
