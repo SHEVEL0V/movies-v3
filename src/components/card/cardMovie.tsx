@@ -7,9 +7,9 @@ import { PATH } from "@/router";
 import type { MovieType } from "@/types";
 import FavoriteBtn from "../button/favoriteBtn";
 
-type Props = { movie: MovieType };
+type Props = { movie: MovieType; fav: string[] };
 
-export default function CardMovie({ movie }: Props) {
+export default function CardMovie({ movie, fav }: Props) {
   const { id, backdrop_path, title, vote_average } = movie;
 
   const img = getBaseUrlImg(backdrop_path);
@@ -27,7 +27,7 @@ export default function CardMovie({ movie }: Props) {
           {vote_average.toFixed(1)}
         </div>
       </Link>
-      <FavoriteBtn movie={movie} />
+      <FavoriteBtn movie={movie} fav={fav} />
     </div>
   );
 }

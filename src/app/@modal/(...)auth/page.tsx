@@ -10,7 +10,7 @@ import GoogleAuthBtn from "@/components/button/googleAuthBtn";
 
 export default function Login() {
   const router = useRouter();
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(true);
   const [message, setMessage] = useState("");
 
   const action = async (formData: FormData) => {
@@ -50,7 +50,7 @@ export default function Login() {
           autoComplete="current-password"
           variant="standard"
         />
-        {status && (
+        {!status && (
           <TextField
             name="password2"
             label="Password again"
@@ -60,15 +60,15 @@ export default function Login() {
             required={true}
           />
         )}
-        <Button type="submit" className="bg-bgWhiteSecond border shadow rounded p-2">
-          sign in
+        <Button type="submit" className="bg-bgWhiteSecond border shadow rounded p-2 mt-4">
+          {status ? "Sing in" : "Sign up"}
         </Button>
         <div className="flex  items-center">
           <button
             className="font-bold text-blue mr-auto"
             onClick={() => setStatus(!status)}
           >
-            {status ? "Sing in" : "Sign up"}
+            {status ? "Sign up" : "Sing in"}
           </button>
           <GoogleAuthBtn />
         </div>

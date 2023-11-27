@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { cert, initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
+import { revalidateTag } from "next/cache";
 
 const app = initializeApp(
   {
@@ -17,7 +18,7 @@ const app = initializeApp(
 );
 
 //===========cookie================================
-const uid = () => cookies().get("uid")?.value || "";
+export const uid = () => cookies().get("uid")?.value || "";
 
 export const setUidToCookie = (value: string) => {
   cookies().set("uid", value);
@@ -57,18 +58,30 @@ export const getMovie = async () => {
     const movie = await db.collection("movies").where("uid", "==", uid()).get();
     movie.forEach((doc) => res.push({ ...doc.data(), doc: doc.id }));
   }
+
   return res;
 };
 
-export const addMovie = async (data: any) => {
-  if (uid()) {
-    await db
-      .collection("movies")
-      .doc()
-      .set({ ...data, uid: uid() });
-  }
-};
+export const addMovie = async (data: any) =>
+  uid()
+    ? db
+        .collection("movies")
+        .doc()
+        .set({ ...data, uid: uid() })
+        .then(() => {
+          revalidateTag("posts");
+          return true;
+        })
+        .catch(() => false)
+    : "login";
 
-export const deleteMovie = async (id: string) => {
-  await db.collection("movies").doc(id).delete();
-};
+export const deleteMovie = async (id: string) =>
+  db
+    .collection("movies")
+    .doc(id)
+    .delete()
+    .then(() => {
+      revalidateTag("posts");
+      return true;
+    })
+    .catch(() => false);
