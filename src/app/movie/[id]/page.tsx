@@ -19,6 +19,7 @@ export default async function MovieLayout(props: Props) {
           width={400}
           height={400}
           alt={data.title}
+          priority={true}
         />
         <div className="col-span-2 flex flex-col gap-2">
           <h1 className="text-2xl ">{data.title}</h1>
@@ -44,7 +45,7 @@ export default async function MovieLayout(props: Props) {
                 className="flex flex-col min-w-[80px] p-1 shadow  rounded bg-bgWhiteSecond dark:bg-bgDarkThird/30"
               >
                 <Image
-                  className="my-auto"
+                  className="my-auto h-auto w-auto"
                   src={getBaseUrlImg(item.logo_path)}
                   height={100}
                   width={100}

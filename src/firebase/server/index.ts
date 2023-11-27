@@ -54,7 +54,6 @@ export const getMovie = async () => {
     const movie = await db.collection("movies").where("uid", "==", uid()).get();
     movie.forEach((doc) => res.push({ ...doc.data(), doc: doc.id }));
   }
-
   return res;
 };
 

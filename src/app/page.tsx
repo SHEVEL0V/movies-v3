@@ -1,7 +1,8 @@
 /** @format */
 import ListMovies from "@/components/listMovies";
 import { movies } from "@/fetch";
-import { getMovie } from "@/firebase/server";
+// import { getMovie } from "@/firebase/server";
+// import { cookies } from "next/headers";
 
 type Params = {
   searchParams: { page: string; sort_by: string };
@@ -9,7 +10,7 @@ type Params = {
 
 export default async function Home({ searchParams }: Params) {
   const data = await movies.getTrendWeek(searchParams);
-  await getMovie();
+  // const fav = await getMovie();
 
   return <ListMovies data={data} />;
 }
