@@ -6,16 +6,16 @@ import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { revalidateTag } from "next/cache";
 
-const app = initializeApp(
-  {
-    credential: cert({
-      projectId: process.env.PROJECT_ID,
-      clientEmail: process.env.CLIENT_EMAIL,
-      privateKey: process.env.PRIVATE_KEY,
-    }),
-  },
-  String(Date.now())
-);
+// const app = initializeApp(
+//   {
+//     credential: cert({
+//       projectId: process.env.PROJECT_ID,
+//       clientEmail: process.env.CLIENT_EMAIL,
+//       privateKey: process.env.PRIVATE_KEY,
+//     }),
+//   },
+//   String(Date.now())
+// );
 
 //===========cookie================================
 export const uid = () => cookies().get("uid")?.value || "";
@@ -23,11 +23,10 @@ export const uid = () => cookies().get("uid")?.value || "";
 export const setUidToCookie = (value: string) => {
   cookies().set("uid", value);
 };
-
 export const deleteUidToCookie = () => cookies().delete("uid");
 
 //============auth===================================
-const auth = getAuth(app);
+const auth = getAuth();
 
 export const isAuth = async () =>
   auth
@@ -49,7 +48,7 @@ export const updateUser = async (
     .catch((error) => error.message as string);
 
 //============movies================================
-const db = getFirestore(app);
+const db = getFirestore();
 
 export const getMovie = async () => {
   let res: any[] = [];
