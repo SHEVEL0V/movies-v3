@@ -6,16 +6,13 @@ import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { revalidateTag } from "next/cache";
 
-const app = initializeApp(
-  {
-    credential: cert({
-      projectId: process.env.PROJECT_ID,
-      clientEmail: process.env.CLIENT_EMAIL,
-      privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    }),
-  },
-  String(Date.now())
-);
+const app = initializeApp({
+  credential: cert({
+    projectId: process.env.PROJECT_ID,
+    clientEmail: process.env.CLIENT_EMAIL,
+    privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, "\n"),
+  }),
+});
 
 //===========cookie================================
 export const uid = () => cookies().get("uid")?.value || "";
