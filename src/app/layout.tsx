@@ -18,7 +18,7 @@ export default async function RootLayout(props: {
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const auth = await isAuth();
+  const auth = { uid: "" };
 
   return (
     <html lang="en">
