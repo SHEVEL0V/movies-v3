@@ -1,9 +1,7 @@
 /** @format */
 "use client";
-// import Link from "next/link";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-// import { PATH } from "@/router";
 import Button from "@mui/material/Button";
 import { login, create } from "@/firebase/client";
 import Modal from "@/components/modal";
@@ -66,9 +64,6 @@ export default function Login() {
           sign in
         </Button>
         <div className="flex  items-center">
-          {/* <Link href={PATH.REGISTER} className="font-bold text-blue mr-auto">
-            Sign up
-          </Link> */}
           <button
             className="font-bold text-blue mr-auto"
             onClick={() => setStatus(!status)}
