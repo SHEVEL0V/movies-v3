@@ -10,7 +10,7 @@ const app = initializeApp({
   credential: cert({
     projectId: process.env.PROJECT_ID,
     clientEmail: process.env.CLIENT_EMAIL,
-    privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    privateKey: process.env.PRIVATE_KEY,
   }),
 });
 
