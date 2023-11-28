@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
+import Fab from "@mui/material/Fab";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
@@ -36,15 +37,22 @@ export default function FavoriteBtn({ movie, fav }: { movie: MovieType; fav: str
   };
 
   return (
-    <Checkbox
-      className="absolute right-1 bottom-1 bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst"
-      size="small"
-      color="error"
-      disabled={loader}
-      icon={loader ? <AutorenewIcon className={"animate-spin"} /> : <FavoriteBorder />}
-      checkedIcon={<Favorite />}
-      checked={checked}
-      onChange={(_, checked) => (checked ? add() : remove())}
-    />
+    <div className="absolute right-1 bottom-1">
+      <Fab
+        className="  bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst/50"
+        size="small"
+        color="error"
+        disabled={loader}
+        onClick={() => (checked ? remove() : add())}
+      >
+        {loader ? (
+          <AutorenewIcon className={"animate-spin"} />
+        ) : checked ? (
+          <Favorite className="text-yellow" />
+        ) : (
+          <FavoriteBorder />
+        )}
+      </Fab>
+    </div>
   );
 }

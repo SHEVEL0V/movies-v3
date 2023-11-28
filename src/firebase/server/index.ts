@@ -33,10 +33,11 @@ export const isAuth = async () =>
 
 export const updateUser = async (
   uid: string,
-  user: { name?: string; url?: string; phone?: string }
+  user: { name?: string; url?: string; phone?: string; password?: string }
 ) =>
   auth
     .updateUser(uid, {
+      password: user.password,
       phoneNumber: user.phone,
       displayName: user.name,
       photoURL: user.url,

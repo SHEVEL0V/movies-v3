@@ -3,6 +3,7 @@
 import React from "react";
 import { isAuth } from "@/firebase/server";
 import UpdateUserForm from "@/components/form/updateUser";
+import Image from "next/image";
 
 export default async function User() {
   const user = await isAuth();
@@ -10,14 +11,19 @@ export default async function User() {
   return (
     <div className=" flex gap-2 bg-bgWhiteSecond dark:bg-bgDarkThird">
       <div className="p-2">
-        <div className="bg-yellow/50 w-[400px] h-[500px] rounded"></div>
+        <Image
+          src={user?.photoURL || ""}
+          alt="user image"
+          width={300}
+          height={300}
+          priority={true}
+        />
       </div>
 
       <UpdateUserForm
         uid={user?.uid || "none"}
         name={user?.displayName}
         phone={user?.phoneNumber}
-        url={user?.photoURL}
       />
     </div>
   );
