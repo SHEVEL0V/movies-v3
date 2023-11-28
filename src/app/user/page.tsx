@@ -9,9 +9,10 @@ export default async function User() {
   const user = await isAuth();
 
   return (
-    <div className=" flex gap-2 bg-bgWhiteSecond dark:bg-bgDarkThird">
+    <div className=" sm:flex h-full rounded gap-2 bg-bgWhiteSecond dark:bg-bgDarkThird">
       <div className="p-2">
         <Image
+          className="rounded shadow"
           src={user?.photoURL || ""}
           alt="user image"
           width={300}

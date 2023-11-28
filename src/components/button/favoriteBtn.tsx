@@ -41,7 +41,7 @@ export default function FavoriteBtn({ movie, fav }: { movie: MovieType; fav: str
       <Fab
         className="  bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst/50"
         size="small"
-        color="error"
+        color="inherit"
         disabled={loader}
         onClick={() => (checked ? remove() : add())}
       >

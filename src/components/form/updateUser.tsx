@@ -50,7 +50,7 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
-      <Button type="submit" color="inherit" variant="outlined">
+      <Button className="mt-6" type="submit" color="inherit" variant="outlined">
         Outlined
       </Button>
     </form>

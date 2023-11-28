@@ -20,6 +20,11 @@ export default function UserBtn() {
     setAnchorEl(null);
   };
 
+  const out = () => {
+    deleteUidToCookie();
+    router.push("/");
+  };
+
   return (
     <div>
       <IconButton
@@ -48,7 +53,7 @@ export default function UserBtn() {
         onClose={handleClose}
       >
         <MenuItem onClick={() => router.push("/user")}>Profile</MenuItem>
-        <MenuItem onClick={() => deleteUidToCookie()}>Out</MenuItem>
+        <MenuItem onClick={() => out()}>Out</MenuItem>
       </Menu>
     </div>
   );
