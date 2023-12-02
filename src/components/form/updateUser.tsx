@@ -1,6 +1,7 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import TextField from "@mui/material/TextField";
 import { updateUser } from "@/firebase/server";
 import Button from "@mui/material/Button";
@@ -12,6 +13,7 @@ type P = {
 };
 
 export default function UpdateUserForm({ name, phone, uid }: P) {
+  const { pending } = useFormStatus();
   const [form, setForm] = useState({
     name: name || "",
     phone: phone || "",
@@ -51,7 +53,7 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
       <Button className="mt-6" type="submit" color="inherit" variant="outlined">
-        Outlined
+        Update
       </Button>
     </form>
   );

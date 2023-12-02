@@ -1,7 +1,6 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
-import Checkbox from "@mui/material/Checkbox";
 import Fab from "@mui/material/Fab";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
@@ -39,7 +38,7 @@ export default function FavoriteBtn({ movie, fav }: { movie: MovieType; fav: str
   return (
     <div className="absolute right-1 bottom-1">
       <Fab
-        className="  bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst/50"
+        className="z-0  bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst/50"
         size="small"
         color="inherit"
         disabled={loader}

@@ -14,13 +14,14 @@ export default async function Reviews({ params }: { params: { id: string } }) {
           key={i}
           className="p-2 rounded shadow-md bg-bgWhiteFirst dark:bg-bgDarkFirst/30"
         >
-          <b>
-            Create user: {e.author}
+          <div className="flex flex-wrap">
+            <b>Create user: {e.author}</b>
+
             <span className="rounded ml-2 p-1 shadow bg-bgWhiteSecond/70 dark:bg-bgDarkSecond">
               {parseDate(e.created_at)}
             </span>
-          </b>
-          <p>{e.content}</p>
+          </div>
+          <div>{e.content}</div>
         </div>
       ))}
     </div>

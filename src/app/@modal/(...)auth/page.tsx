@@ -7,27 +7,32 @@ import { login, create } from "@/firebase/client";
 import Modal from "@/components/modal";
 import { useRouter } from "next/navigation";
 import GoogleAuthBtn from "@/components/button/googleAuthBtn";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Login() {
   const router = useRouter();
   const [status, setStatus] = useState(true);
   const [message, setMessage] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const action = async (formData: FormData) => {
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
     const password2 = String(formData.get("password2"));
-
+    setLoader(true);
     status
-      ? login(email as string, password as string)
+      ? await login(email as string, password as string)
           .then(() => router.back())
           .catch(() => setMessage("🔴 Wrong login or password"))
       : password == password2
-      ? create(email, password)
+      ? await create(email, password)
           .then(() => router.back())
           .catch(() => setMessage("🚫 User not created."))
       : setMessage("🚫 The passwords is incompatible");
+    setLoader(false);
   };
+
+  console.log(loader);
 
   return (
     <Modal>
@@ -35,7 +40,7 @@ export default function Login() {
         action={action}
         className="max-w-[600px]  flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
       >
-        <p className="text-textBlack">{message}</p>
+        {loader ? <LinearProgress /> : <div className="text-textBlack">{message}</div>}
         <TextField
           name="email"
           label="email"
@@ -60,7 +65,12 @@ export default function Login() {
             required={true}
           />
         )}
-        <Button type="submit" className="bg-bgWhiteSecond border shadow rounded p-2 mt-4">
+
+        <Button
+          disabled={loader}
+          type="submit"
+          className="bg-bgWhiteSecond border shadow rounded p-2 mt-4"
+        >
           {status ? "Sing in" : "Sign up"}
         </Button>
         <div className="flex  items-center">
