@@ -2,24 +2,23 @@
 "use client";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { login, create } from "@/firebase/client";
 import Modal from "@/components/modal";
 import { useRouter } from "next/navigation";
 import GoogleAuthBtn from "@/components/button/googleAuthBtn";
-import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Login() {
   const router = useRouter();
   const [status, setStatus] = useState(true);
   const [message, setMessage] = useState("");
-  const [loader, setLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const action = async (formData: FormData) => {
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
     const password2 = String(formData.get("password2"));
-    setLoader(true);
+    setLoading(true);
     status
       ? await login(email as string, password as string)
           .then(() => router.back())
@@ -29,10 +28,8 @@ export default function Login() {
           .then(() => router.back())
           .catch(() => setMessage("🚫 User not created."))
       : setMessage("🚫 The passwords is incompatible");
-    setLoader(false);
+    setLoading(false);
   };
-
-  console.log(loader);
 
   return (
     <Modal>
@@ -40,7 +37,6 @@ export default function Login() {
         action={action}
         className="max-w-[600px]  flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst"
       >
-        {loader ? <LinearProgress /> : <div className="text-textBlack">{message}</div>}
         <TextField
           name="email"
           label="email"
@@ -66,13 +62,14 @@ export default function Login() {
           />
         )}
 
-        <Button
-          disabled={loader}
+        <LoadingButton
+          disabled={loading}
           type="submit"
+          loading={loading}
           className="bg-bgWhiteSecond border shadow rounded p-2 mt-4"
         >
           {status ? "Sing in" : "Sign up"}
-        </Button>
+        </LoadingButton>
         <div className="flex  items-center">
           <button
             className="font-bold text-blue mr-auto"

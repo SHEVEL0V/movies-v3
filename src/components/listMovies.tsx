@@ -21,7 +21,7 @@ export default async function ListMovies({ data }: Props) {
         ))}
       </div>
       <div className="mt-2"></div>
-      <Pag qtyPage={data.total_pages} />
+      {!!data.total_pages && <Pag qtyPage={data.total_pages} />}
     </div>
   );
 }

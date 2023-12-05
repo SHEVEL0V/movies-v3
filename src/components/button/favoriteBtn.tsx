@@ -1,7 +1,6 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
-import Fab from "@mui/material/Fab";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
@@ -30,28 +29,26 @@ export default function FavoriteBtn({ movie, fav }: { movie: MovieType; fav: str
 
   const remove = async () => {
     setLoader(true);
-    const res = await deleteMovie(String(movie.doc));
+    const res = await deleteMovie(movie.id.toString());
     setLoader(false);
     setChecked(!res);
   };
 
   return (
-    <div className="absolute right-1 bottom-1">
-      <Fab
-        className="z-0  bg-bgWhiteSecond/50 hover:bg-bgWhiteFirst/50"
-        size="small"
-        color="inherit"
-        disabled={loader}
-        onClick={() => (checked ? remove() : add())}
-      >
-        {loader ? (
-          <AutorenewIcon className={"animate-spin"} />
-        ) : checked ? (
-          <Favorite className="text-yellow" />
-        ) : (
-          <FavoriteBorder />
-        )}
-      </Fab>
-    </div>
+    <button
+      className="absolute right-1 bottom-1
+      p-2 rounded-full bg-bgWhiteSecond/30  hover:bg-bgWhiteFirst/40 hover:shadow hover:shadow-white/50 "
+      color="inherit"
+      disabled={loader}
+      onClick={() => (checked ? remove() : add())}
+    >
+      {loader ? (
+        <AutorenewIcon className={"animate-spin"} />
+      ) : checked ? (
+        <Favorite className="text-yellow" />
+      ) : (
+        <FavoriteBorder />
+      )}
+    </button>
   );
 }

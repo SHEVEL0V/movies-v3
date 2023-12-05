@@ -1,7 +1,6 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
 import TextField from "@mui/material/TextField";
 import { updateUser } from "@/firebase/server";
 import Button from "@mui/material/Button";
@@ -12,12 +11,12 @@ type P = {
   phone?: string;
 };
 
+type FormType = { name?: string; phone?: string; password?: string };
+
 export default function UpdateUserForm({ name, phone, uid }: P) {
-  const { pending } = useFormStatus();
-  const [form, setForm] = useState({
-    name: name || "",
-    phone: phone || "",
-    password: "",
+  const [form, setForm] = useState<FormType>({
+    name,
+    phone,
   });
 
   const action = async (formData: FormData) => {
@@ -32,16 +31,18 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         name="name"
         label="name"
         type="text"
+        autoComplete="username"
         variant="standard"
-        value={form.name}
+        value={form.name || ""}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
       <TextField
         name="phone"
         label="phone"
         type="phone"
+        autoComplete=""
         variant="standard"
-        value={form.phone}
+        value={form.phone || ""}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
       <TextField
@@ -49,7 +50,8 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         label="password"
         type="password"
         variant="standard"
-        value={form.password}
+        autoComplete="current-password"
+        value={form.password || ""}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
       <Button className="mt-6" type="submit" color="inherit" variant="outlined">

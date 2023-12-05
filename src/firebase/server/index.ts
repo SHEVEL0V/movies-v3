@@ -5,6 +5,7 @@ import { cert, initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { revalidateTag } from "next/cache";
+import { MovieType } from "@/types";
 
 const app = initializeApp({
   credential: cert({
@@ -51,20 +52,17 @@ const db = getFirestore(app);
 export const getMovie = async () => {
   let res: any[] = [];
 
-  if (uid()) {
-    const movie = await db.collection("movies").where("uid", "==", uid()).get();
-    movie.forEach((doc) => res.push({ ...doc.data(), doc: doc.id }));
-  }
+  uid() && (await db.collection(uid()).get()).forEach((doc) => res.push(doc.data()));
 
   return res;
 };
 
-export const addMovie = async (data: any) =>
+export const addMovie = async (data: MovieType) =>
   uid()
     ? db
-        .collection("movies")
-        .doc()
-        .set({ ...data, uid: uid() })
+        .collection(uid())
+        .doc(data.id.toString())
+        .set(data)
         .then(() => {
           revalidateTag("posts");
           return true;
@@ -74,7 +72,7 @@ export const addMovie = async (data: any) =>
 
 export const deleteMovie = async (id: string) =>
   db
-    .collection("movies")
+    .collection(uid())
     .doc(id)
     .delete()
     .then(() => {

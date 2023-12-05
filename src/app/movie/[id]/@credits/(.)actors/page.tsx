@@ -4,6 +4,7 @@ import React from "react";
 import { movies } from "@/fetch";
 import Image from "next/image";
 import { getBaseUrlImg } from "@/helpers/geUrlImg";
+import avatar from "@/assets/avatar.png";
 
 type Props = { params: { id: string } };
 
@@ -19,7 +20,7 @@ export default async function Actors({ params }: Props) {
         >
           <Image
             className="w-full h-auto rounded shadow"
-            src={getBaseUrlImg(e.profile_path)}
+            src={e.profile_path ? getBaseUrlImg(e.profile_path) : avatar}
             width={200}
             height={200}
             alt={e.name}
