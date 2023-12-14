@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { updateUser } from "@/firebase/server";
-import Button from "@mui/material/Button";
+import LoadingBtn from "../button/loadingBtn";
 
 type P = {
   uid: string;
@@ -26,13 +26,14 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
   };
 
   return (
-    <form action={action} className="p-2 flex flex-col gap-2">
+    <form action={action} className="w-full p-2 flex flex-col gap-4">
       <TextField
         name="name"
         label="name"
         type="text"
         autoComplete="username"
         variant="standard"
+        color="info"
         value={form.name || ""}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
@@ -42,6 +43,7 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         type="phone"
         autoComplete=""
         variant="standard"
+        color="info"
         value={form.phone || ""}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
@@ -50,13 +52,12 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         label="password"
         type="password"
         variant="standard"
+        color="info"
         autoComplete="current-password"
         value={form.password || ""}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
-      <Button className="mt-6" type="submit" color="inherit" variant="outlined">
-        Update
-      </Button>
+      <LoadingBtn title="  Update" />
     </form>
   );
 }

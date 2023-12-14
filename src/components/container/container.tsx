@@ -8,7 +8,7 @@ export default function Container({
 }) {
   return (
     <div
-      className="flex w-[1280px] h-[calc(100vh-8px)] p-3 rounded-2xl shadow 
+      className="mx-auto flex w-[1280px] h-[calc(100vh-8px)] p-3 rounded-2xl shadow 
      bg-bgWhiteFirst text-textBlack  dark:bg-bgDarkSecond dark:text-textWhite"
     >
       {children}

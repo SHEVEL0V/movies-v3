@@ -23,10 +23,7 @@ export default async function RootLayout(props: {
   return (
     <html lang="en">
       <body
-        className={
-          "overflow-hidden flex pt-1 justify-center relative bg-[url(../assets/bg.jpg)] " +
-          inter.className
-        }
+        className={inter.className + "overflow-hidden pt-1  bg-[url(../assets/bg.jpg)]  "}
       >
         <Container>
           <Sidebar />
