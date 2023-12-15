@@ -9,13 +9,7 @@ type Props = { title: string };
 export default function LoadingBtn({ title }: Props) {
   const { pending } = useFormStatus();
   return (
-    <LoadingButton
-      className="mt-4 hover:bg-bgWhiteSecond dark:hover:bg-bgDarkSecond"
-      color="inherit"
-      variant="contained"
-      loading={pending}
-      type="submit"
-    >
+    <LoadingButton variant="contained" loading={pending} type="submit">
       {title}
     </LoadingButton>
   );

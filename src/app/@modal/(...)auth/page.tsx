@@ -32,7 +32,7 @@ export default function Login() {
     <Modal>
       <form
         action={action}
-        className="max-w-[600px]  flex flex-col gap-3 p-4 rounded shadow bg-bgWhiteFirst dark:bg-bgDarkFirst"
+        className="max-w-[600px]  flex flex-col gap-4 p-4 rounded shadow bg-bgWhiteFirst dark:bg-bgDarkFirst"
       >
         <TextField
           name="email"
@@ -40,6 +40,7 @@ export default function Login() {
           type="email"
           autoComplete="current-email"
           variant="standard"
+          required
         />
         <TextField
           name="password"
@@ -55,7 +56,7 @@ export default function Login() {
             type="password"
             autoComplete="current-password"
             variant="standard"
-            required={true}
+            required
           />
         )}
 

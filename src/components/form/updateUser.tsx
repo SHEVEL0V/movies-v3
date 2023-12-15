@@ -44,6 +44,7 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         autoComplete=""
         variant="standard"
         color="info"
+        error={form.phone?.length === 12}
         value={form.phone || ""}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
@@ -54,6 +55,7 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
         variant="standard"
         color="info"
         autoComplete="current-password"
+        error={!!form.password && form.password?.length < 4}
         value={form.password || ""}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />

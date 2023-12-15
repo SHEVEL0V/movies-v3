@@ -1,19 +1,11 @@
 /** @format */
 "use server";
 import { cookies } from "next/headers";
-import { cert, initializeApp } from "firebase-admin/app";
+import { cert, initializeApp, getApps } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { revalidateTag } from "next/cache";
 import { MovieType } from "@/types";
-
-const app = initializeApp({
-  credential: cert({
-    projectId: process.env.PROJECT_ID,
-    clientEmail: process.env.CLIENT_EMAIL,
-    privateKey: process.env.PRIVATE_KEY,
-  }),
-});
 
 //===========cookie================================
 export const uid = () => cookies().get("uid")?.value || "";
@@ -22,6 +14,17 @@ export const setUidToCookie = (value: string) => {
   cookies().set("uid", value);
 };
 export const deleteUidToCookie = () => cookies().delete("uid");
+
+//===========init================================
+const app = !!getApps().length
+  ? getApps()[0]
+  : initializeApp({
+      credential: cert({
+        projectId: process.env.PROJECT_ID,
+        clientEmail: process.env.CLIENT_EMAIL,
+        privateKey: process.env.PRIVATE_KEY,
+      }),
+    });
 
 //============auth===================================
 const auth = getAuth(app);
