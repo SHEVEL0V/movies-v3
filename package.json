@@ -22,7 +22,8 @@
     "next": "^14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "type": "^2.7.2"
+    "type": "^2.7.2",
+    "zod": "^3.23.0-canary.20231004T224911"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",

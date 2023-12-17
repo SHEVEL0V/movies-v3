@@ -22,14 +22,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export const create = async (email: string, password: string) => {
-  const user = await createUserWithEmailAndPassword(auth, email, password);
-  setUidToCookie(user.user.uid);
+type userType = { email: string; password: string };
+
+export const create = async (user: userType) => {
+  const res = await createUserWithEmailAndPassword(auth, user.email, user.password);
+  setUidToCookie(res.user.uid);
 };
 
-export const login = async (email: string, password: string) => {
-  const user = await signInWithEmailAndPassword(auth, email, password);
-  setUidToCookie(user.user.uid);
+export const login = async (user: userType) => {
+  const res = await signInWithEmailAndPassword(auth, user.email, user.password);
+  setUidToCookie(res.user.uid);
 };
 
 export const loginGoogle = async () => {

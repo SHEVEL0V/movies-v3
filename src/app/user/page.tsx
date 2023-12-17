@@ -11,7 +11,7 @@ export default async function User() {
 
   return (
     <div className=" sm:flex h-full rounded gap-2 p-2 bg-bgWhiteSecond dark:bg-bgDarkThird">
-      <div className="p-2 rounded bg-bgWhiteFirst dark:bg-bgDarkFirst">
+      <div className="p-2 rounded bg-bgWhiteFirst dark:bg-bgDarkSecond">
         <Image
           className="rounded shadow"
           src={user?.photoURL || avatar}
@@ -21,7 +21,7 @@ export default async function User() {
           priority={true}
         />
       </div>
-      <div className="p-2 rounded sm:min-w-[400px] bg-bgWhiteFirst dark:bg-bgDarkFirst ">
+      <div className="p-2 rounded sm:min-w-[400px] bg-bgWhiteFirst dark:bg-bgDarkSecond ">
         <div className="border border-textBlack rounded p-2">Email: {user?.email}</div>
         <UpdateUserForm
           uid={user?.uid || "none"}

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { updateUser } from "@/firebase/server";
 import LoadingBtn from "../button/loadingBtn";
+import { validateUser } from "@/helpers/validation";
 
 type P = {
   uid: string;
@@ -18,44 +19,51 @@ export default function UpdateUserForm({ name, phone, uid }: P) {
     name,
     phone,
   });
+  const [message, setMessage] = useState<{ [field: string]: string[] }>({});
 
   const action = async (formData: FormData) => {
-    const res = await updateUser(uid, form);
+    const validForm = validateUser(form);
 
-    alert(res);
+    if (validForm.success) {
+      const res = await updateUser(uid, form);
+      alert(res);
+    } else {
+      setMessage(validForm.error.flatten().fieldErrors);
+    }
   };
 
   return (
     <form action={action} className="w-full p-2 flex flex-col gap-4">
       <TextField
         name="name"
-        label="name"
+        label={message["name"] || "name"}
         type="text"
         autoComplete="username"
         variant="standard"
         color="info"
+        error={!!message["name"]}
         value={form.name || ""}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
       <TextField
         name="phone"
-        label="phone"
+        label={message["phone"] || "phone"}
         type="phone"
         autoComplete=""
         variant="standard"
         color="info"
-        error={form.phone?.length === 12}
+        error={!!message["phone"]}
         value={form.phone || ""}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
       <TextField
         name="password"
-        label="password"
+        label={message["password"] || "password"}
         type="password"
         variant="standard"
         color="info"
+        error={!!message["password"]}
         autoComplete="current-password"
-        error={!!form.password && form.password?.length < 4}
         value={form.password || ""}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
